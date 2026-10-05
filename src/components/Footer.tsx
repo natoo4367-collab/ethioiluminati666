@@ -130,13 +130,6 @@ export const Footer: React.FC<FooterProps> = ({
                 <Lock className="w-3.5 h-3.5 text-amber-400" />
                 <span>{t.memberLogin}</span>
               </button>
-              <button
-                onClick={onOpenAdmin}
-                className="flex items-center gap-1.5 text-stone-400 hover:text-amber-300 transition-colors cursor-pointer"
-              >
-                <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-                <span>{t.adminConsole}</span>
-              </button>
             </div>
           </div>
         </div>
@@ -150,13 +143,6 @@ export const Footer: React.FC<FooterProps> = ({
             <span>{currentLang === 'am' ? 'አዲስ አበባ፣ ኢትዮጵያ' : 'Addis Ababa, Ethiopia'}</span>
             <span>•</span>
             <span>{t.adminVerifiedPass}</span>
-            <span>•</span>
-            <button
-              onClick={onOpenAdmin}
-              className="text-stone-400 hover:text-amber-400 font-mono transition-colors cursor-pointer"
-            >
-              {t.directorateLog}
-            </button>
           </div>
         </div>
       </div>

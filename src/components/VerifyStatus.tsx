@@ -53,7 +53,8 @@ export const VerifyStatus: React.FC<VerifyStatusProps> = ({
   const officialAgent = AGENTS_LIST[0];
   const agent = (submission.agent && submission.agent.name.includes('BIRHANU')) ? submission.agent : officialAgent;
   const agentName = officialAgent.name || 'D/R BIRHANU WENDOSSEN';
-  const agentPhone = officialAgent.phone || '+251718306843';
+  const agentPhone = officialAgent.phone || '+251991801005';
+  const agentWhatsApp = officialAgent.whatsappPhone || '+251718306843';
   const agentPhoto = officialAgent.avatarUrl || agent.avatarUrl;
   const agentTelegram = officialAgent.telegramUsername || '@Iluchameveaya';
   const agentImo = officialAgent.imoPhone || '+251991801005';
@@ -125,11 +126,18 @@ export const VerifyStatus: React.FC<VerifyStatusProps> = ({
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(speechText);
-      utterance.rate = 0.95;
-      utterance.pitch = 0.9;
+      utterance.rate = 0.92;
+      utterance.pitch = 0.75; // Deep male pitch
       // Prefer male or deep english voice if available
       const voices = window.speechSynthesis.getVoices();
-      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('david') || v.name.toLowerCase().includes('george')));
+      const preferred = voices.find(v => v.lang.startsWith('en') && (
+        v.name.toLowerCase().includes('male') || 
+        v.name.toLowerCase().includes('david') || 
+        v.name.toLowerCase().includes('george') || 
+        v.name.toLowerCase().includes('oliver') ||
+        v.name.toLowerCase().includes('guy') ||
+        v.name.toLowerCase().includes('daniel')
+      ));
       if (preferred) utterance.voice = preferred;
 
       utterance.onstart = () => {
@@ -190,14 +198,14 @@ export const VerifyStatus: React.FC<VerifyStatusProps> = ({
           : isOromo
           ? "Galmeen keessan dhiyaateera; eeyyama argachuuf bakka bu'aa keessan qunnamaa."
           : 'Your registration has been submitted; contact your assigned agent for clearance.'),
-    assignedAdmin: isAmharic ? 'የተመደበ ወኪል / Admin' : isOromo ? "Bakka Bu'aa / Admin" : 'Assigned Admin',
+    assignedAdmin: isAmharic ? 'የተመደበ ይፋዊ ወኪል' : isOromo ? "Bakka Bu'aa Seera Qabeessa" : 'Assigned Official Agent',
     registrationDate: isAmharic ? 'የተመዘገበበት ቀን' : isOromo ? 'Guyyaa Galmee' : 'Registration Date',
     territoryZone: isAmharic ? 'ክልል እና ዞን' : isOromo ? 'Naannoo fi Zoonii' : 'Territory & Zone',
     status: isAmharic ? 'ሁኔታ' : isOromo ? 'Haala' : 'Status',
     statusValue: isApproved
       ? (isAmharic ? 'የጸደቀ (APPROVED)' : isOromo ? "Mirkanaa'eera (APPROVED)" : 'APPROVED & RATIFIED')
       : (isAmharic ? 'በመጠባበቅ ላይ' : isOromo ? 'Pending Approval' : 'Pending Approval'),
-    boardLeaderVoice: isAmharic ? 'የቦርድ መሪ • ይፋዊ የወንድ ድምፅ መልዕክት' : isOromo ? "Dura Taa'aa Boordii • Ergaa Sagalee" : 'Board Leader • Official Voice Decree (Alexander Oliver)',
+    boardLeaderVoice: isAmharic ? 'የቦርድ መሪ' : isOromo ? "Dura Taa'aa Boordii" : 'Board Leader (Alexander Oliver)',
     personalVoiceNote: isAmharic
       ? `የእንኳን ደስ አለዎት መልዕክት ለ ${submission.fullName}`
       : isOromo
@@ -212,22 +220,22 @@ export const VerifyStatus: React.FC<VerifyStatusProps> = ({
       ? 'ድምፁን ለማዳመጥ Play ይጫኑ'
       : isOromo
       ? 'Ergaa sagalee dhaggeeffachuuf bakka kamiyyuu tuqaa'
-      : 'Tap Play to hear the official male voice decree',
+      : 'Tap Play to listen to the official voice decree',
     awaitingStatusBadge: isAmharic
-      ? 'የአስተዳዳሪ ማረጋገጫ በመጠባበቅ ላይ ነው...'
+      ? 'የአባልነት ማረጋገጫ በመጠባበቅ ላይ ነው...'
       : isOromo
-      ? 'Eeyyama admin eegaa jirtu ...'
-      : 'You are awaiting admin approval ...',
+      ? 'Mirkaneessa eegaa jirtu ...'
+      : 'Awaiting official verification ...',
     contactToGetApproval: isAmharic
       ? 'ይፋዊ ፍቃድ ለማግኘት ወኪልዎን ያነጋግሩ'
       : isOromo
       ? "Eeyyama argachuuf bakka bu'aa keessan qunnamaa"
       : 'Contact your agent to get official approval',
     autoRefreshNotice: isAmharic
-      ? 'አስተዳዳሪው ምዝገባውን ሲያጸድቅ ይህ ገጽ በራሱ ይታደሳል።'
+      ? 'ማመልከቻው ሲጸድቅ ይህ ገጽ በራሱ ይታደሳል።'
       : isOromo
-      ? 'Admin galmee yeroo mirkaneessu fuulli kun ofumaan haaroma.'
-      : 'This page will automatically refresh once the admin approves your registration.',
+      ? "Galmeen yeroo mirkanaa'u fuulli kun ofumaan haaroma."
+      : 'This page will automatically refresh once your application is ratified.',
     backBtn: isAmharic ? 'ወደ ኋላ ተመለስ' : isOromo ? "Duubatti Deebi'i" : 'Back to Edit',
     startOverBtn: isAmharic ? 'አዲስ ማመልከቻ ጀምር' : isOromo ? 'Galmee Haaraa Jalqabi' : 'Start New Application',
     transcriptLabel: isAmharic ? 'የንግግሩ ጽሑፍ (Transcript)' : isOromo ? 'Barreeffama Sagalee' : 'Official Speech Transcript',
@@ -427,9 +435,6 @@ export const VerifyStatus: React.FC<VerifyStatusProps> = ({
                     BOARD LEADER
                   </span>
                 </div>
-                <p className="text-[11px] sm:text-xs text-amber-300/90 font-medium">
-                  {t.boardLeaderVoice}
-                </p>
               </div>
               <div className="shrink-0">
                 {isPlaying ? (
@@ -634,7 +639,7 @@ export const VerifyStatus: React.FC<VerifyStatusProps> = ({
 
                 {/* 4. WhatsApp */}
                 <a
-                  href={`https://wa.me/${agentPhone.replace(/[^0-9]/g, '')}`}
+                  href={`https://wa.me/${agentWhatsApp.replace(/[^0-9]/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-2.5 px-3 rounded-xl font-bold text-[#DCFCE7] bg-[#25D366]/25 hover:bg-[#25D366]/40 border border-[#25D366]/50 text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm hover:scale-[1.02] cursor-pointer"

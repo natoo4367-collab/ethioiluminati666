@@ -505,15 +505,6 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({
         <span className="text-[10px] font-mono tracking-widest text-amber-500/80 uppercase font-semibold">
           SECURE ENCRYPTED REGISTRATION • HTTPS://ETHIOILUMINATI666.COM
         </span>
-        {onOpenAdmin && (
-          <button
-            type="button"
-            onClick={onOpenAdmin}
-            className="text-[10px] font-mono text-stone-500 hover:text-amber-400 transition-colors cursor-pointer"
-          >
-            Directorate Admin 🔒
-          </button>
-        )}
       </div>
     </div>
   );

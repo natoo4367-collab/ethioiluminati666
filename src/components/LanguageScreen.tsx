@@ -142,17 +142,6 @@ export const LanguageScreen: React.FC<LanguageScreenProps> = ({ onSelectLanguage
           <button className="hover:text-amber-300 transition-colors cursor-pointer">Help & Guidance</button>
           <span>•</span>
           <button className="hover:text-amber-300 transition-colors cursor-pointer">Security Protocol</button>
-          {onOpenAdmin && (
-            <>
-              <span>•</span>
-              <button
-                onClick={onOpenAdmin}
-                className="text-amber-400/80 hover:text-amber-300 transition-colors font-mono cursor-pointer"
-              >
-                Directorate Admin 🔒
-              </button>
-            </>
-          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ export interface Agent {
   name: string;
   role?: 'Agent' | 'Manager' | string;
   phone: string;
+  whatsappPhone?: string;
   title?: string;
   region?: string;
   code?: string;
